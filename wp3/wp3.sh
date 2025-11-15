@@ -1,4 +1,4 @@
-#!/bin/bash                        #cloudways
+#!/bin/bash                       
 
 USER_HOME="$HOME"
 
