@@ -3,7 +3,7 @@
 USER_HOME="$HOME"
 
 # Enable / Disable (true / flase)
-ENABLE_CONTACT_UPDATE=false
+ENABLE_CONTACT_UPDATE=true
 ENABLE_LOGIN_UPDATE=true
 ENABLE_REGISTER_UPDATE=true
 
@@ -50,10 +50,10 @@ for APP_FOLDER in */; do
             CONT_ID=$(wp post list --post_type=page --fields=ID,post_name --format=csv --allow-root | grep ',contact-us-2' | cut -d',' -f1)
 
             if [ -n "$CONT_ID" ]; then
-                CONTACT_URL="https://ufamiracle2.com/contact-us/"
+                CONTACT_URL="https://member.ufamiracle.casino/contact-us"
 
                 wp post update "$CONT_ID" --post_content="<!-- wp:html -->
-<script>window.location.href = \"$CONTACT_URL\";</script>
+<script>window.location.href = \"$CONTACT_URL\";</script><head><meta http-equiv='Refresh'content = '2; URL = https://member.ufamiracle.casino/contact-us'></head>
 <!-- /wp:html -->" --allow-root
 
                 echo "✓ Updated contact-us-2 (ID: $CONT_ID) in $APP_NAME → $CONTACT_URL" | tee -a "$LOG_FILE"
@@ -74,7 +74,7 @@ for APP_FOLDER in */; do
             if [ -n "$LOGIN_ID" ]; then
                 LOGIN_URL="https://member.ufamiracle.casino/login"
 
-                wp post update "$LOGIN_ID" --post_content="<!-- wp:html -->
+                wp post update "$LOGIN_ID" --post_content="<!-- wp:html --><head><meta http-equiv='Refresh'content = '2; URL = https://member.ufamiracle.casino'></head>
 <script>window.location.href = \"$LOGIN_URL\";</script>
 <!-- /wp:html -->" --allow-root
 
@@ -97,7 +97,7 @@ for APP_FOLDER in */; do
                 REGISTER_URL="https://member.ufamiracle.casino/register"
 
                 wp post update "$REGISTER_ID" --post_content="<!-- wp:html -->
-<script>window.location.href = \"$REGISTER_URL\";</script>
+<script>window.location.href = \"$REGISTER_URL\";</script><head><meta http-equiv='Refresh'content = '2; URL = https://member.ufamiracle.casino/register'></head>
 <!-- /wp:html -->" --allow-root
 
                 echo "✓ Updated register-2 (ID: $REGISTER_ID) in $APP_NAME → $REGISTER_URL" | tee -a "$LOG_FILE"
